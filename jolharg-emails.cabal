@@ -1,0 +1,78 @@
+cabal-version:       3.4
+name:                jolharg-emails
+version:             0.1.0.0
+license:             AGPL-3.0-only
+author:              Dan Dart
+maintainer:          git@dandart.co.uk
+-- copyright:
+-- category:
+build-type:          Simple
+extra-source-files:  CHANGELOG.md, README.md
+
+library
+  exposed-modules:    Email.Email
+                    , Email.Forgot
+                    , Email.PasswordReset
+                    , Email.Verify
+                    , Email.Welcome
+ -- other-extensions:
+  build-depends:      base >= 4.12 && < 5
+                    , bcrypt
+                    , blaze-html
+                    -- , haveibeenpwned
+                    , jolharg-database
+                    , jolharg-servant-examples
+                    , jolharg-web-database
+                    , jolharg-web-models
+                    , jolharg-web-types
+                    , mime-mail
+                    , mtl
+                    , network
+                    , servant-auth-server
+                    , servant-server
+                    , smtp-mail
+                    , sqlite-simple
+                    , text
+                    -- , time
+                    -- , transformers
+                    , uuid
+  hs-source-dirs:      lib
+  default-language:    Haskell2010
+  default-extensions:  DerivingStrategies, NoGeneralisedNewtypeDeriving, ImportQualifiedPost, OverloadedStrings, UnicodeSyntax
+  ghc-options:         -Wall -Werror
+                      -Weverything
+                     -Wno-unsafe -Wno-safe
+                      -Wno-missing-import-lists
+                      -Wno-missing-export-lists
+                      -Wno-implicit-prelude
+                      -Wno-missing-safe-haskell-mode
+                      -Wno-missing-kind-signatures
+                      -Wno-missing-local-signatures
+
+
+test-suite jolharg-emails-test
+  hs-source-dirs:      test
+  type:                exitcode-stdio-1.0
+  default-language:    Haskell2010
+  default-extensions:  DerivingStrategies, NoGeneralisedNewtypeDeriving, ImportQualifiedPost, OverloadedStrings, UnicodeSyntax
+  main-is:             Spec.hs
+  ghc-options: -Wall -Werror -threaded -rtsopts -with-rtsopts=-N
+                      -Weverything
+                     -Wno-unsafe -Wno-safe
+                      -Wno-missing-import-lists
+                      -Wno-missing-export-lists
+                      -Wno-implicit-prelude
+                      -Wno-missing-safe-haskell-mode
+                      -Wno-missing-kind-signatures
+                      -Wno-missing-local-signatures
+  build-depends:
+    base >= 4.12 && < 5
+    -- , jolharg-emails
+    , hspec
+    -- , hspec-core
+    -- , hspec-expectations
+    -- , HUnit
+    -- , QuickCheck
+  -- build-tool-depends: hspec-discover:hspec-discover
+  other-modules:
+    MainSpec
