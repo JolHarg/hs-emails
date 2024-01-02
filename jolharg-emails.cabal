@@ -17,25 +17,14 @@ library
                     , Email.Welcome
  -- other-extensions:
   build-depends:      base >= 4.12 && < 5
-                    , bcrypt
                     , blaze-html
                     -- , haveibeenpwned
-                    , jolharg-database
-                    , jolharg-servant-examples
-                    , jolharg-web-database
+                    , jolharg-api-types
                     , jolharg-web-models
                     , jolharg-web-types
                     , mime-mail
-                    , mtl
-                    , network
-                    , servant-auth-server
-                    , servant-server
                     , smtp-mail
-                    , sqlite-simple
                     , text
-                    -- , time
-                    -- , transformers
-                    , uuid
   hs-source-dirs:      lib
   default-language:    Haskell2010
   default-extensions:  DerivingStrategies, NoGeneralisedNewtypeDeriving, ImportQualifiedPost, OverloadedStrings, UnicodeSyntax
@@ -48,7 +37,6 @@ library
                       -Wno-missing-safe-haskell-mode
                       -Wno-missing-kind-signatures
                       -Wno-missing-local-signatures
-
 
 test-suite jolharg-emails-test
   hs-source-dirs:      test
