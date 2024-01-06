@@ -10,7 +10,8 @@ import Text.Blaze.Html5            qualified as H
 import Text.Blaze.Html5.Attributes qualified as A
 import Types.Email                 as TypeEmail
 import Types.Name
-import Types.User (User(..), UserEmail(..), UserName(..), UserVerificationToken(..))
+import Types.User                  (User (..), UserEmail (..), UserName (..),
+                                    UserVerificationToken (..))
 
 welcome ∷ String → User → Email.Email
 welcome host User {
