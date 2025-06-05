@@ -1,10 +1,9 @@
-cabal-version:      3.4
+cabal-version:      3.12
 name:               jolharg-emails
-version:            0.1.0.0
+version:            0.2.0.0
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
-
 -- copyright:
 -- category:
 build-type:         Simple
@@ -19,18 +18,16 @@ library
     Email.PasswordReset
     Email.Verify
     Email.Welcome
-
   -- other-extensions:
   build-depends:
-    , base                >=4.20.0.0 && <5
-    , blaze-html
-    , jolharg-api-types
-    , jolharg-web-models
-    , jolharg-web-types
-    , mime-mail
-    , smtp-mail
-    , text
-
+    , base                ^>=4.21.0.0
+    , blaze-html          ^>=0.9.2.0
+    , jolharg-api-types   ^>=0.2.0.0
+    , jolharg-web-models  ^>=0.2.0.0
+    , jolharg-web-types   ^>=0.2.0.0
+    , mime-mail           ^>=0.5.1
+    , smtp-mail           ^>=0.5.0.0
+    , text                ^>=2.1.2
   -- , haveibeenpwned
   hs-source-dirs:     lib
   default-language:   GHC2024
@@ -38,7 +35,6 @@ library
     NoGeneralisedNewtypeDeriving
     OverloadedStrings
     UnicodeSyntax
-
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
@@ -50,6 +46,8 @@ library
     -Wno-unrecognised-warning-flags -Wno-missed-specialisations
 
 test-suite jolharg-emails-test
+  if arch(javascript) || arch(wasm32)
+    buildable: False
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0
   default-language:   GHC2024
@@ -57,10 +55,11 @@ test-suite jolharg-emails-test
     NoGeneralisedNewtypeDeriving
     OverloadedStrings
     UnicodeSyntax
-
   main-is:            Spec.hs
+  if !arch(wasm32)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
-    -Wall -Werror -threaded -rtsopts -with-rtsopts=-N -Weverything
+    -Wall -Werror -Weverything
     -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
@@ -68,11 +67,9 @@ test-suite jolharg-emails-test
     -Wno-all-missed-specialisations -Wno-missed-specialisations
     -Wno-missing-role-annotations -Wno-unrecognised-warning-flags
     -Wno-missed-specialisations
-
   build-depends:
-    , base   >=4.20.0.0 && <5
-    , hspec
-
+    , base   ^>=4.21.0.0
+    , hspec  ^>=2.11.12
   -- , jolharg-emails
   -- , hspec-core
   -- , hspec-expectations

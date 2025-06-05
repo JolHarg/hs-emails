@@ -2,7 +2,7 @@
 
 module Email.Verify where
 
-import Data.Text.Lazy
+import Data.Text.Lazy qualified as T
 import Email.Email                 as Email
 import Network.Mail.Mime
 import Text.Blaze.Html5            ((!))
@@ -34,11 +34,11 @@ verify host User {
 } = Email.Email {
     to = Address (Just name') email',
     subject = "JobFinder: Verify your email address",
-    text = "Hi " <> fromStrict name' <> ", you have been signed up to JobFinder. If this was you, please verify your email address at: " <> pack host <> "/verify?token=" <> pack (show verificationToken') <> ", or if not, please disregard this email.",
+    text = "Hi " <> T.fromStrict name' <> ", you have been signed up to JobFinder. If this was you, please verify your email address at: " <> T.pack host <> "/verify?token=" <> T.show verificationToken' <> ", or if not, please disregard this email.",
     html = H.p $ do
         "Hi " <> H.text name' <> ", you have been signed up to JobFinder. If this was you, please verify your email address at: "
-        (H.a ! A.href (H.lazyTextValue $ pack host <> "/verify?token=" <> pack (show verificationToken')))
-            . H.lazyText $ (pack host <> "/verify?token=" <> pack (show verificationToken'))
+        (H.a ! A.href (H.lazyTextValue $ T.pack host <> "/verify?token=" <> T.show verificationToken'))
+            . H.lazyText $ (T.pack host <> "/verify?token=" <> T.show verificationToken')
         ", or if not, please disregard this email."
 
 }
