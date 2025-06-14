@@ -13,8 +13,9 @@ import Types.Name
 import Types.User                  (User (..), UserEmail (..), UserName (..),
                                     UserVerificationToken (..))
 import Types.VerificationToken
+import GHC.Stack (HasCallStack)
 
-verify ∷ String → User → Email.Email
+verify ∷ HasCallStack => String → User → Email.Email
 verify host User {
     email = UserEmail {
         getUserEmail = TypeEmail.Email {

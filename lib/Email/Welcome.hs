@@ -12,8 +12,9 @@ import Types.Email                 as TypeEmail
 import Types.Name
 import Types.User                  (User (..), UserEmail (..), UserName (..),
                                     UserVerificationToken (..))
+import GHC.Stack (HasCallStack)
 
-welcome ∷ String → User → Email.Email
+welcome ∷ HasCallStack => String → User → Email.Email
 welcome host User {
     email = UserEmail {
         getUserEmail = TypeEmail.Email {
