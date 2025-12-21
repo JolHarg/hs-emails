@@ -22,7 +22,7 @@ library
 
   -- other-extensions:
   build-depends:
-    , base                >=4.21 && <4.23
+    , base                ^>=4.22
     , blaze-html          ^>=0.9.2
     , jolharg-api-types   ^>=0.3
     , jolharg-web-models  ^>=0.3
@@ -76,7 +76,7 @@ test-suite jolharg-emails-test
     -Wno-unrecognised-warning-flags -Wno-missed-specialisations
 
   build-depends:
-    , base   >=4.21 && <4.23
+    , base   ^>=4.22
     , hspec  ^>=2.11.15
 
   -- , jolharg-emails
